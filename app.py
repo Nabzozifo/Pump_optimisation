@@ -264,7 +264,7 @@ with left_col:
         st.markdown(
             f'<div class="file-header">FILE {file_num}</div>', unsafe_allow_html=True)
 
-        for pump_num in range(1, 4):
+        for pump_num in [3,1,2]:
             pid = f"File {file_num}_P{pump_num}"
             nom_flow, nom_power = pump_specs[pid]
 
@@ -361,16 +361,16 @@ if simulate:
         power_box.empty()
         combo_box.empty()
         error_box.markdown(
-            f'<div class="error-box">Débit insuffisant<br>'
-            f'Disponible: {res["available_flow"]:.0f} m³/h<br>'
-            f'Demandé: {target_flow:.0f} m³/h</div>',
+            f'<div class="error-box">Débit insuffisant pour atteindre le débit demandé<br>'
+            f'Débit Total Disponible: {res["available_flow"]:.0f} m³/h<br>'
+            f'Débit Demandé: {target_flow:.0f} m³/h</div>',
             unsafe_allow_html=True
         )
     else:
         active = set(res["pumps_on"])
         for pid, ph in placeholders.items():
             ph.markdown(
-                f'<div class="circle" style="background:{"#2c8ac9" if pid in active else "#e0e0e0"};"></div>',
+                f'<div class="circle" style="background:{"#00ff59" if pid in active else "#e0e0e0"};"></div>',
                 unsafe_allow_html=True
             )
 
