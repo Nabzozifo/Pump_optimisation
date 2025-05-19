@@ -24,7 +24,7 @@ body                         { background: #f8f9fa; color: #333; font-family: 'S
     color: white;
     text-align: center;
     font-weight: 600;
-    font-size: 0.7rem; /* Smaller font */
+    font-size: 1rem; /* Smaller font */
     padding: 0.1rem 0; /* Reduced padding */
     margin: 0.1rem 0;
     border-radius: 4px;
@@ -81,7 +81,7 @@ body                         { background: #f8f9fa; color: #333; font-family: 'S
 }
 
 .flow-input-label {
-    font-size: 0.75rem; /* Smaller font */
+    font-size: 1rem; /* Smaller font */
     font-weight: 600;
     color: #2c8ac9;
     margin-bottom: 0.2rem; /* Reduced margin */
@@ -96,7 +96,7 @@ body                         { background: #f8f9fa; color: #333; font-family: 'S
 .stNumberInput input {
     border: 2px solid #2c8ac9 !important;
     font-weight: 600 !important;
-    font-size: 0.8rem !important; /* Slightly larger for clarity */
+    font-size: 1rem !important; /* Slightly larger for clarity */
     height: 30px !important; /* Taller for easier interaction */
 }
 
@@ -108,7 +108,7 @@ body                         { background: #f8f9fa; color: #333; font-family: 'S
     width: 100% !important;
     transition: all 0.2s !important;
     padding: 0.4rem 0.5rem !important; /* Reduced padding */
-    font-size: 0.75rem !important; /* Smaller font */
+    font-size: 1rem !important; /* Smaller font */
     height: auto !important;
 }
 
@@ -125,7 +125,7 @@ body                         { background: #f8f9fa; color: #333; font-family: 'S
     border-radius: 0 4px 4px 0;
     padding: 0.4rem; /* Reduced padding */
     margin-bottom: 0.4rem; /* Reduced margin */
-    font-size: 0.7rem; /* Smaller font */
+    font-size: 1rem; /* Smaller font */
     font-weight: 600;
 }
 
@@ -142,12 +142,12 @@ body                         { background: #f8f9fa; color: #333; font-family: 'S
     border-radius: 0 4px 4px 0;
     padding: 0.4rem; /* Reduced padding */
     margin-bottom: 0.4rem; /* Reduced margin */
-    font-size: 0.7rem; /* Smaller font */
+    font-size: 1rem; /* Smaller font */
     font-weight: 600;
 }
 
 .combo-text {
-    font-size: 0.7rem; /* Smaller font */
+    font-size: 1rem; /* Smaller font */
     color: #555;
     margin-top: 0.4rem; /* Reduced margin */
     line-height: 1.2; /* Tighter line spacing */
