@@ -309,7 +309,7 @@ with left_col:
 
 # ─── CONTROL PANEL ───
 with right_col:
-    st.markdown('<div class="control-panel">', unsafe_allow_html=True)
+    # st.markdown('<div class="control-panel">', unsafe_allow_html=True)
 
     # Flow input
     st.markdown('<div class="flow-input-label">DÉBIT DÉSIRÉ (m³/h)</div>',
