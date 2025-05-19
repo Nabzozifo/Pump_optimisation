@@ -322,7 +322,7 @@ with right_col:
         label_visibility="collapsed",
         format="%.0f",
         min_value=0.0,
-        max_value=10000000.0
+        max_value=10000000000.0
     )
 
     # Simulate button
