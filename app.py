@@ -8,148 +8,160 @@ st.set_page_config(page_title="Optimisation des pompes", layout="wide")
 st.markdown("""
 <style>
 /* ──── GLOBAL STYLING ──── */
-.block-container               { padding:0 1rem !important; max-width:100vw !important; }
-.block-container .element-container { margin:0 !important; }
-body                           { background:#f8f9fa; color:#333; font-family:'Segoe UI', sans-serif; }
+.block-container             { padding: 0.5rem 0.5rem !important; max-width: 100vw !important; }
+.block-container .element-container { margin: 0 !important; }
+body                         { background: #f8f9fa; color: #333; font-family: 'Segoe UI', sans-serif; }
 
 /* ──── COMPACT PUMP TABLE ──── */
-[data-testid="column"]:nth-child(1){ flex:0 0 50px !important; max-width:50px !important; }
+[data-testid="column"]:nth-child(1){ flex: 0 0 40px !important; max-width: 40px !important; } /* Adjust pump label column width */
 
 /* Header */
-.header       { text-align:center; font-size:0.7rem; font-weight:600; white-space:nowrap; color:#555; }
+.header         { text-align: center; font-size: 0.6rem; font-weight: 600; white-space: nowrap; color: #555; padding-bottom: 0.2rem; }
 
 /* File grouping */
 .file-header {
-    background:#2c8ac9;
-    color:white;
-    text-align:center;
-    font-weight:600;
-    font-size:0.75rem;
-    padding:0.15rem 0;
-    margin:0.1rem 0;
-    border-radius:4px;
+    background: #2c8ac9;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.7rem; /* Smaller font */
+    padding: 0.1rem 0; /* Reduced padding */
+    margin: 0.1rem 0;
+    border-radius: 4px;
 }
 
 /* Cells styling */
 .value-cell {
-    background:#e9f5fe;
-    color:#2c8ac9;
-    border:1px solid #d0e3f4;
-    border-radius:4px;
-    font-size:0.65rem;
-    height:22px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    width:100%;
-    padding:0 0.2rem;
+    background: #e9f5fe;
+    color: #2c8ac9;
+    border: 1px solid #d0e3f4;
+    border-radius: 4px;
+    font-size: 1rem; /* Smaller font */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0 0.1rem;
+    box-sizing: border-box; /* Include padding/border in element's total width and height */
 }
 
 /* Input fields */
 .stTextInput input {
-    background:#fff !important;
-    color:#333 !important;
-    border:1px solid #ddd !important;
-    height:22px !important;
-    font-size:0.65rem !important;
-    padding:0 0.3rem !important;
+    background: #fff !important;
+    color: #333 !important;
+    border: 0.5px solid #ddd !important;
+    height: 30px !important; /* Reduced height */
+    font-size: 1rem !important; /* Smaller font */
+    padding: 0 0.2rem !important;
 }
 
 /* Checkbox */
 .stCheckbox {
-    transform: scale(0.8);
-    margin-left:0.5rem !important;
+    transform: scale(0.7); /* Smaller checkbox */
+    margin-left: 0.2rem !important; /* Adjust margin */
+    padding: 0 !important;
 }
 
 /* Selection circle */
 .circle {
-    width:14px;
-    height:14px;
-    border-radius:50%;
-    margin:0 auto;
-    background:#e0e0e0;
+    width: 12px; /* Smaller circle */
+    height: 12px;
+    border-radius: 50%;
+    margin: 0 auto;
+    background: #e0e0e0;
 }
 
 /* ──── CONTROL PANEL ──── */
 .control-panel {
-    background:#fff;
-    border-radius:8px;
-    padding:0.8rem;
-    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    background: #fff;
+    border-radius: 8px;
+    padding: 0.6rem; /* Reduced padding */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .flow-input-label {
-    font-size:0.85rem;
-    font-weight:600;
-    color:#2c8ac9;
-    margin-bottom:0.3rem;
-    display:block;
+    font-size: 0.75rem; /* Smaller font */
+    font-weight: 600;
+    color: #2c8ac9;
+    margin-bottom: 0.2rem; /* Reduced margin */
+    display: block;
 }
 
 .flow-input {
-    width:100%;
-    margin-bottom:0.8rem;
+    width: 100%;
+    margin-bottom: 0.6rem; /* Reduced margin */
 }
 
 .stNumberInput input {
-    border:2px solid #2c8ac9 !important;
-    font-weight:600 !important;
+    border: 2px solid #2c8ac9 !important;
+    font-weight: 600 !important;
+    font-size: 0.8rem !important; /* Slightly larger for clarity */
+    height: 30px !important; /* Taller for easier interaction */
 }
 
 .simulate-btn {
-    background:#2c8ac9 !important;
-    color:white !important;
-    border:none !important;
-    font-weight:600 !important;
-    width:100% !important;
-    transition:all 0.2s !important;
+    background: #2c8ac9 !important;
+    color: white !important;
+    border: none !important;
+    font-weight: 600 !important;
+    width: 100% !important;
+    transition: all 0.2s !important;
+    padding: 0.4rem 0.5rem !important; /* Reduced padding */
+    font-size: 0.75rem !important; /* Smaller font */
+    height: auto !important;
 }
 
 .simulate-btn:hover {
-    background:#1d6998 !important;
-    transform:translateY(-1px);
+    background: #1d6998 !important;
+    transform: translateY(-1px);
 }
 
 /* Results boxes */
 .metric-box {
-    background:#e9f5fe;
-    color:#2c8ac9;
-    border-left:4px solid #2c8ac9;
-    border-radius:0 4px 4px 0;
-    padding:0.5rem;
-    margin-bottom:0.6rem;
-    font-size:0.8rem;
-    font-weight:600;
+    background: #e9f5fe;
+    color: #2c8ac9;
+    border-left: 4px solid #2c8ac9;
+    border-radius: 0 4px 4px 0;
+    padding: 0.4rem; /* Reduced padding */
+    margin-bottom: 0.4rem; /* Reduced margin */
+    font-size: 0.7rem; /* Smaller font */
+    font-weight: 600;
 }
 
 .metric-value {
-    font-size:1.1rem;
-    font-weight:700;
-    margin-top:0.2rem;
+    font-size: 1rem; /* Slightly smaller */
+    font-weight: 700;
+    margin-top: 0.1rem; /* Reduced margin */
 }
 
 .error-box {
-    background:#fee9e9;
-    color:#d32f2f;
-    border-left:4px solid #d32f2f;
-    border-radius:0 4px 4px 0;
-    padding:0.5rem;
-    margin-bottom:0.6rem;
-    font-size:0.8rem;
-    font-weight:600;
+    background: #fee9e9;
+    color: #d32f2f;
+    border-left: 4px solid #d32f2f;
+    border-radius: 0 4px 4px 0;
+    padding: 0.4rem; /* Reduced padding */
+    margin-bottom: 0.4rem; /* Reduced margin */
+    font-size: 0.7rem; /* Smaller font */
+    font-weight: 600;
 }
 
 .combo-text {
-    font-size:0.75rem;
-    color:#555;
-    margin-top:0.5rem;
-    line-height:1.3;
+    font-size: 0.7rem; /* Smaller font */
+    color: #555;
+    margin-top: 0.4rem; /* Reduced margin */
+    line-height: 1.2; /* Tighter line spacing */
 }
 
 /* Compact spacing */
 .element-container:has(.stTextInput),
 .element-container:has(.stCheckbox) {
-    margin-bottom:-0.5rem !important;
+    margin-bottom: -0.8rem !important; /* Further reduce space between elements */
+}
+
+/* Adjust column spacing for tight fit */
+[data-testid="stVerticalBlock"] > div > div > div {
+    gap: 0.2rem; /* Reduce gap between elements in vertical blocks */
 }
 </style>
 """, unsafe_allow_html=True)
@@ -227,206 +239,156 @@ def optimise_for_flow(pump_data: dict, target_flow: float, allow_random=True):
 
 
 # ─────────────────────────── UI LAYOUT ────────────────────────────────
-# Créer un conteneur principal avec un espacement réduit
-main_container = st.container()
-with main_container:
-    # Titre avec marge réduite
-    # st.markdown("""
-    # <h1 style='
-    #     text-align:center;
-    #     font-size:1.5rem;
-    #     color:#2c8ac9;
-    #     margin-bottom:0.5rem;  /* Réduit la marge */
+st.markdown("<h1 style='text-align:center;font-size:4rem;color:#2c8ac9;margin-bottom:0.5rem;'>Optimisation de l'utilisation des pompes</h1>", unsafe_allow_html=True)
 
-    # '>Optimisation de l'utilisation des pompes</h1>
-    # """, unsafe_allow_html=True)
+# Adjust column ratios for better fit: Left (pump table) and Right (control panel/results)
+# Adjusted ratio for more space for pumps
+left_col, right_col = st.columns([3, 1])
 
-    # Utiliser des colonnes avec hauteur ajustée
-    left_col, right_col = st.columns([4, 1], gap="medium")
+# ─── PUMP TABLE ───
+with left_col:
+    # Headers
+    headers = ["", "P. Nom.", "D. Nom.",
+               "P. Obs.", "D. Obs.", "Dispo", "Sélection"]
+    # Adjusted column widths to be very compact
+    col_widths = [0.4, 0.9, 0.9, 0.9, 0.9, 0.6, 0.6]
+    header_cols = st.columns(col_widths)
+    for col, h in zip(header_cols, headers):
+        col.markdown(f'<div class="header">{h}</div>', unsafe_allow_html=True)
 
-    left_col, right_col = st.columns([4, 1])
+    pump_data = {}
+    placeholders = {}
 
-    # ─── PUMP TABLE ───
-    with left_col:
-        st.markdown("""
-    <h1 style='
-        text-align:center;
-        font-size:2rem;
-        color:#2c8ac9;
-        '>Optimisation de l'utilisation des pompes</h1>
-    """, unsafe_allow_html=True)
-        st.markdown('<div class="files-container">', unsafe_allow_html=True)
+    # Table body
+    for file_num in range(1, 5):
+        st.markdown(
+            f'<div class="file-header">FILE {file_num}</div>', unsafe_allow_html=True)
 
-        # Headers
-        headers = ["", "Puissance Nom.", "Débit Nom.",
-                   "Puissance Obs.", "Débit Obs.", "Dispo", "Sélection"]
-        col_widths = [0.5, 1, 1, 1, 1, 0.7, 0.7]
-        header_cols = st.columns(col_widths)
-        for col, h in zip(header_cols, headers):
-            col.markdown(
-                f'<div class="header">{h}</div>', unsafe_allow_html=True)
+        for pump_num in range(1, 4):
+            pid = f"File {file_num}_P{pump_num}"
+            nom_flow, nom_power = pump_specs[pid]
 
-        pump_data = {}
-        placeholders = {}
+            cols = st.columns(col_widths)
+            # Pump label
+            cols[0].markdown(
+                f'<div style="text-align:center;font-weight:bold;font-size:0.6rem;">P{pump_num}</div>', unsafe_allow_html=True)
+            # Nominal power
+            cols[1].markdown(
+                f'<div class="value-cell">{nom_power} kW</div>', unsafe_allow_html=True)
+            # Nominal flow
+            cols[2].markdown(
+                f'<div class="value-cell">{nom_flow} m³/h</div>', unsafe_allow_html=True)
+            # Observed power
+            obs_p_str = cols[3].text_input("", value=str(
+                nom_power), key=f"{pid}_obs_p", label_visibility="collapsed")
+            # Observed flow
+            obs_f_str = cols[4].text_input("", value=str(
+                nom_flow), key=f"{pid}_obs_f", label_visibility="collapsed")
+            # Availability
+            avail = cols[5].checkbox(
+                "", value=True, key=f"{pid}_avail", label_visibility="collapsed")
+            # Selection circle
+            placeholders[pid] = cols[6].empty()
 
-        # Table body
-        for file_num in range(1, 5):
-            st.markdown(
-                f'<div class="file-header">FILE {file_num}</div>', unsafe_allow_html=True)
+            # Parse observed values
+            try:
+                obs_p = float(obs_p_str)
+            except ValueError:
+                obs_p = nom_power
+            try:
+                obs_f = float(obs_f_str)
+            except ValueError:
+                obs_f = nom_flow
 
-            for pump_num in range(1, 4):
-                pid = f"File {file_num}_P{pump_num}"
-                nom_flow, nom_power = pump_specs[pid]
+            pump_data[pid] = {
+                "nom_flow": nom_flow, "nom_power": nom_power,
+                "obs_flow": None if obs_f == nom_flow else obs_f,
+                "obs_power": None if obs_p == nom_power else obs_p,
+                "avail": avail
+            }
 
-                cols = st.columns(col_widths)
-                # Pump label
-                cols[0].markdown(
-                    f'<div style="text-align:center;font-weight:bold;">P{pump_num}</div>', unsafe_allow_html=True)
-                # Nominal power
-                cols[1].markdown(
-                    f'<div class="value-cell">{nom_power} kW</div>', unsafe_allow_html=True)
-                # Nominal flow
-                cols[2].markdown(
-                    f'<div class="value-cell">{nom_flow} m³/h</div>', unsafe_allow_html=True)
-                # Observed power
-                obs_p_str = cols[3].text_input("", value=str(
-                    nom_power), key=f"{pid}_obs_p", label_visibility="collapsed")
-                # Observed flow
-                obs_f_str = cols[4].text_input("", value=str(
-                    nom_flow), key=f"{pid}_obs_f", label_visibility="collapsed")
-                # Availability
-                avail = cols[5].checkbox(
-                    "", value=True, key=f"{pid}_avail", label_visibility="collapsed")
-                # Selection circle
-                placeholders[pid] = cols[6].empty()
+# ─── CONTROL PANEL ───
+with right_col:
+    st.markdown('<div class="control-panel">', unsafe_allow_html=True)
 
-                # Parse observed values
-                try:
-                    obs_p = float(obs_p_str)
-                except ValueError:
-                    obs_p = nom_power
-                try:
-                    obs_f = float(obs_f_str)
-                except ValueError:
-                    obs_f = nom_flow
+    # Flow input
+    st.markdown('<div class="flow-input-label">DÉBIT DÉSIRÉ (m³/h)</div>',
+                unsafe_allow_html=True)
+    target_flow = st.number_input(
+        "",
+        value=30000.0,
+        step=1000.0,
+        key="target_flow",
+        label_visibility="collapsed",
+        format="%.0f",
+        min_value=0.0,
+        max_value=10000000.0
+    )
 
-                pump_data[pid] = {
-                    "nom_flow": nom_flow, "nom_power": nom_power,
-                    "obs_flow": None if obs_f == nom_flow else obs_f,
-                    "obs_power": None if obs_p == nom_power else obs_p,
-                    "avail": avail
-                }
+    # Simulate button
+    simulate = st.button(
+        "SIMULER L'OPTIMISATION",
+        key="simulate_btn",
+        help="Trouve la combinaison la plus économe en énergie"
+    )
 
-        st.markdown('</div>', unsafe_allow_html=True)
+    # Results containers
+    flow_box = st.empty()
+    power_box = st.empty()
+    combo_box = st.empty()
+    error_box = st.empty()
 
-    # ─── CONTROL PANEL ───
-    with right_col:
-        # Conteneur avec scroll interne si nécessaire
-        # st.markdown("""
-        # <div style='
-        #     max-height: calc(100vh - 120px);
-        #     overflow-y: auto;
-        #     padding: 0.5rem;
-        # '>
-        # """, unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
-        # # Panel de contrôle avec espacement optimisé
-        # st.markdown("""
-        # <div class="control-panel" style='
-        #     margin-top: 0.5rem;  /* Ajustement de la marge haute */
-        # '>
-        # """, unsafe_allow_html=True)
+# ─── OPTIMISATION EXECUTION ───
+if simulate:
+    st.session_state.reset_selection = True
+    res = optimise_for_flow(pump_data, target_flow)
+    error_box.empty()  # Clear previous errors
 
-        # Champ "Débit désiré" plus visible
-        st.markdown("""
-        <div style='
-            margin-bottom: 0.8rem;
-            padding: 0.3rem 0;
-        '>
-            <div class="flow-input-label" style='
-                font-size: 0.9rem;
-                color: #2c8ac9;
-                font-weight: 600;
-            '>DÉBIT DÉSIRÉ (m³/h)</div>
-        </div>
-        """, unsafe_allow_html=True)
+    if not res:
+        st.error("Aucune combinaison valide ne permet d'atteindre le débit cible.")
+    elif "error" in res and res["error"] == "insufficient_flow":
+        for pid, ph in placeholders.items():
+            ph.markdown(
+                '<div class="circle" style="background:#e0e0e0;"></div>', unsafe_allow_html=True)
 
-        target_flow = st.number_input(
-            "",
-            value=30000.0,
-            step=1000.0,
-            key="target_flow",
-            label_visibility="collapsed",
-            format="%.0f",
-            min_value=0.0,
-            max_value=500000.0
+        flow_box.markdown(
+            f'<div class="metric-box">Débit Disponible<br>'
+            f'<span class="metric-value">{res["available_flow"]:.0f} m³/h</span></div>',
+            unsafe_allow_html=True
+        )
+        power_box.empty()
+        combo_box.empty()
+        error_box.markdown(
+            f'<div class="error-box">Débit insuffisant<br>'
+            f'Disponible: {res["available_flow"]:.0f} m³/h<br>'
+            f'Demandé: {target_flow:.0f} m³/h</div>',
+            unsafe_allow_html=True
+        )
+    else:
+        active = set(res["pumps_on"])
+        for pid, ph in placeholders.items():
+            ph.markdown(
+                f'<div class="circle" style="background:{"#2c8ac9" if pid in active else "#e0e0e0"};"></div>',
+                unsafe_allow_html=True
+            )
+
+        flow_box.markdown(
+            f'<div class="metric-box">Débit Total<br>'
+            f'<span class="metric-value">{res["total_flow"]:.0f} m³/h</span></div>',
+            unsafe_allow_html=True
         )
 
-        # Simulate button
-        simulate = st.button(
-            "SIMULER L'OPTIMISATION",
-            key="simulate_btn",
-            help="Trouve la combinaison la plus économe en énergie"
+        power_box.markdown(
+            f'<div class="metric-box">Puissance Totale<br>'
+            f'<span class="metric-value">{res["total_power"]:.0f} kW</span></div>',
+            unsafe_allow_html=True
         )
 
-        # Results containers
-        flow_box = st.empty()
-        power_box = st.empty()
-        combo_box = st.empty()
-        error_box = st.empty()
-
-        st.markdown('</div>', unsafe_allow_html=True)
-
-    # ─── OPTIMISATION EXECUTION ───
-    if simulate:
-        st.session_state.reset_selection = True
-        res = optimise_for_flow(pump_data, target_flow)
-        error_box.empty()
-
-        if not res:
-            st.error(
-                "Aucune combinaison valide ne permet d'atteindre le débit cible.")
-        elif "error" in res and res["error"] == "insufficient_flow":
-            for pid, ph in placeholders.items():
-                ph.markdown(
-                    '<div class="circle" style="background:#e0e0e0;"></div>', unsafe_allow_html=True)
-
-            flow_box.markdown(
-                f'<div class="metric-box">Débit Disponible<br>'
-                f'<span class="metric-value">{res["available_flow"]:.0f} m³/h</span></div>',
-                unsafe_allow_html=True
-            )
-            power_box.empty()
-            combo_box.empty()
-            error_box.markdown(
-                f'<div class="error-box">Débit insuffisant<br>'
-                f'Disponible: {res["available_flow"]:.0f} m³/h<br>'
-                f'Demandé: {target_flow:.0f} m³/h</div>',
-                unsafe_allow_html=True
-            )
-        else:
-            active = set(res["pumps_on"])
-            for pid, ph in placeholders.items():
-                ph.markdown(
-                    f'<div class="circle" style="background:{"#00ff59" if pid in active else "#e0e0e0"};"></div>',
-                    unsafe_allow_html=True
-                )
-
-            flow_box.markdown(
-                f'<div class="metric-box">Débit Total<br>'
-                f'<span class="metric-value">{res["total_flow"]:.0f} m³/h</span></div>',
-                unsafe_allow_html=True
-            )
-
-            power_box.markdown(
-                f'<div class="metric-box">Puissance Totale<br>'
-                f'<span class="metric-value">{res["total_power"]:.0f} kW</span></div>',
-                unsafe_allow_html=True
-            )
-
-            combo_text = ", ".join(pid.replace("File ", "F")
-                                   for pid in res["pumps_on"])
-            combo_box.markdown(
-                f'<div class="combo-text">Pompes sélectionnées:<br><strong>{combo_text}</strong></div>',
-                unsafe_allow_html=True
-            )
+        combo_text = ", ".join(pid.replace("File ", "F")
+                               for pid in res["pumps_on"])
+        combo_box.markdown(
+            f'<div class="combo-text">Pompes sélectionnées:<br><strong>{combo_text}</strong></div>',
+            unsafe_allow_html=True
+        )
