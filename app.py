@@ -434,6 +434,17 @@ with right_col:
         format="%.1f",
         help="Salinité de l'eau de mer (typiquement autour de 35 kg/m³)"
     )
+
+    sea_level = st.number_input(
+    "Niveau de la mer (m)",
+    value=0.0,
+    min_value=-2.0,
+    max_value=5.0,
+    step=0.1,
+    format="%.1f",
+    help="Niveau de la mer ou marée en mètres (valeurs typiques entre -2 m et +5 m selon les marées)"
+)
+
     
     st.markdown('<hr style="margin: 10px 0">', unsafe_allow_html=True)
 
