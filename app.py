@@ -437,7 +437,7 @@ with right_col:
 
     sea_level = st.number_input(
     "Niveau de la mer (m)",
-    value=0.0,
+    value=2.0,
     min_value=-2.0,
     max_value=5.0,
     step=0.1,
